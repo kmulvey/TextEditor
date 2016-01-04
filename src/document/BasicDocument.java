@@ -63,7 +63,27 @@ public class BasicDocument extends Document {
 //			System.out.println(string);
 //		}
 //		System.out.println("=============");
-		return getTokens("(?![eE]\\b)[aeiouyAEIOUY]+").size();
+		
+		// I dont love this but it captures the "...unless the word has no other syllables" case
+		int trailingE = 0;
+		String[] words = getText().split(" ");
+		for (String word : words) {
+			if(word.trim().length()==0) continue;
+			if(word.charAt(word.length()-1) == 'e' || word.charAt(word.length()-1) == 'E'){
+				int voulCount = 1;
+				String vouls = "aeiouyAEIOUY";
+				for(int i=0; i<word.length()-1;i++){
+					if(vouls.contains(Character.toString(word.charAt(i)))){
+						voulCount++;
+					}
+				}
+				if(voulCount == 1) trailingE++;
+			}
+		}
+		
+		// this regex captures all other cases
+		trailingE += getTokens("(?![eE]\\b)[aeiouyAEIOUY]+").size();
+		return trailingE;
 	}
 
 	/*
