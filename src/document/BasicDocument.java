@@ -1,10 +1,5 @@
 package document;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * A naive implementation of the Document abstract class.
  * 
@@ -58,16 +53,16 @@ public class BasicDocument extends Document {
 	public int getNumSyllables() {
 		// TODO: Implement this method. See the Module 1 support videos
 		// if you need help.
-		ArrayList<String> allMatches = new ArrayList<String>();
-		Matcher m = Pattern.compile("(?![eE]\\b)(?=[eE]{1}\\b)[aeiouyAEIOUY]+").matcher("there should be 5!  Right?");
-		while (m.find()) {
-			allMatches.add(m.group());
-		}
-		System.out.println("=============");
-		for (String string : allMatches) {
-			System.out.println(string);
-		}
-		System.out.println("=============");
+//		ArrayList<String> allMatches = new ArrayList<String>();
+//		Matcher m = Pattern.compile("(?![eE]\\b)[aeiouyAEIOUY]+").matcher("sentence, with, lots, of, commas.!  (And some poaren)).  The output is: 7.5.");
+//		while (m.find()) {
+//			allMatches.add(m.group());
+//		}
+//		System.out.println("=============");
+//		for (String string : allMatches) {
+//			System.out.println(string);
+//		}
+//		System.out.println("=============");
 		return getTokens("(?![eE]\\b)[aeiouyAEIOUY]+").size();
 	}
 
@@ -96,7 +91,6 @@ public class BasicDocument extends Document {
 				new BasicDocument(
 						"Lorem ipsum dolor sit amet, qui ex choro quodsi moderatius, nam dolores explicari forensibus ad."),
 				32, 15, 1);
-
 	}
 
 }
